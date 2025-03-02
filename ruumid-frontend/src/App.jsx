@@ -53,13 +53,10 @@ function App() {
     const apiUrl = muudetav
       ? `${API_BASE_URL}/broneeringud/${muudetav}`
       : `${API_BASE_URL}/broneeringud`;
-      console.log("📌 Saadame PUT päringu:", apiUrl);
-      console.log("📌 Saadetavad andmed:", { paev: valitudPäev, tund: valitudTund, klass, tunni_nimi: tunniNimi, opetaja });
     const apiMethod = muudetav ? axios.put : axios.post;
   
     apiMethod(apiUrl, { paev: valitudPäev, tund: valitudTund, klass, tunni_nimi: tunniNimi, opetaja })
       .then(() => {
-        console.log("✅ Broneering edukalt muudetud!");
         setModalAvatud(false);
         laeBroneeringud();
       })
