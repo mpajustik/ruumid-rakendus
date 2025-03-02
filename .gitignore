@@ -9,6 +9,8 @@ lerna-debug.log*
 
 .env
 ruumid-backend/node_modules
+ruumid-backend/.env
+ruumid-frontend/.env
 node_modules/
 dist
 dist-ssr
