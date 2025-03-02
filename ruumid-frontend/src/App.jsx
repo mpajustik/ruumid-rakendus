@@ -51,7 +51,7 @@ function App() {
 
   const salvestaBroneering = () => {
     const apiUrl = muudetav
-      ? `${API_BASE_URL}/${muudetav}`
+      ? `${API_BASE_URL}/broneeringud/${muudetav}`
       : `${API_BASE_URL}/broneeringud`;
       console.log("📌 Saadame PUT päringu:", apiUrl);
       console.log("📌 Saadetavad andmed:", { paev: valitudPäev, tund: valitudTund, klass, tunni_nimi: tunniNimi, opetaja });

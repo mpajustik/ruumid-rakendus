@@ -66,10 +66,11 @@ app.post("/broneeringud", async (req, res) => {
 
 
 app.put("/broneeringud/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id); // Kontrollime, kas ID on number
   const { paev, tund, klass, tunni_nimi, opetaja } = req.body;
 
-  console.log("🛠 Saabunud PUT päring:", req.body, "ID:", id);
+  console.log("📌 Saabunud PUT päring backendis:", req.body);
+  console.log("📌 ID backendis:", id);
 
   try {
     const result = await pool.query(
@@ -89,6 +90,7 @@ app.put("/broneeringud/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 
