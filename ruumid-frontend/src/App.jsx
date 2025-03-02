@@ -4,6 +4,8 @@ import axios from "axios";
 const päevad = ["Esmaspäev", "Teisipäev", "Kolmapäev", "Neljapäev", "Reede"];
 const tunnid = [1, 2, 3, 4, 5, 6, 7, 8];
 
+const API_BASE_URL = "https://ruumid-rakendus.onrender.com";
+
 function App() {
   const [broneeringud, setBroneeringud] = useState([]);
   const [muudetav, setMuudetav] = useState(null);
@@ -20,7 +22,7 @@ function App() {
 
   const laeBroneeringud = () => {
     axios
-      .get("http://localhost:5000/broneeringud")
+      .get(`${API_BASE_URL}/broneeringud`)
       .then((response) => setBroneeringud(response.data))
       .catch((error) =>
         console.error("Viga broneeringute laadimisel:", error)
@@ -49,8 +51,8 @@ function App() {
 
   const salvestaBroneering = () => {
     const apiUrl = muudetav
-      ? `http://localhost:5000/broneeringud/${muudetav}`
-      : "http://localhost:5000/broneeringud";
+      ? `${API_BASE_URL}/${muudetav}`
+      : `${API_BASE_URL}/broneeringud`;
     const apiMethod = muudetav ? axios.put : axios.post;
   
     apiMethod(apiUrl, { paev: valitudPäev, tund: valitudTund, klass, tunni_nimi: tunniNimi, opetaja })
@@ -66,7 +68,7 @@ function App() {
   const kustutaBroneering = (id) => {
     if (window.confirm("Kas oled kindel, et soovid kustutada?")) {
       axios
-        .delete(`http://localhost:5000/broneeringud/${id}`)
+        .delete(`${API_BASE_URL}/broneeringud/${id}`)
         .then(() => laeBroneeringud())
         .catch((error) =>
           console.error("Viga broneeringu kustutamisel:", error)
